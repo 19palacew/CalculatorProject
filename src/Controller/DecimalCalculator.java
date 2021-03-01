@@ -6,7 +6,7 @@ import Model.Decimal;
  * Modifies Decimals with various mathematical functions and conversions
  */
 public class DecimalCalculator implements Calculator{
-    private Decimal decimal;
+    private final Decimal decimal;
 
     /**
      * Creates a new Decimal Calculator of the value decimal
@@ -103,7 +103,7 @@ public class DecimalCalculator implements Calculator{
      * @return Returns the decimal as a decimal
      */
     public Long toDecimal(){
-        return Long.parseLong(decimal.toString());
+        return (long)Double.parseDouble(decimal.toString());
     }
 
     /**

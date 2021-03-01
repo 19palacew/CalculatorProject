@@ -2,11 +2,20 @@ package Controller;
 
 import Model.Binary;
 
+import java.math.BigInteger;
+
 /**
  * Modifies Binary with various mathematical functions and conversions
  */
 public class BinaryCalculator implements Calculator{
-    private Binary binary;
+    private final Binary binary;
+
+    /**
+     * Creates a new BinaryCalculator with the default value of Binary
+     */
+    public BinaryCalculator() {
+        binary = new Binary();
+    }
 
     /**
      * Creates a new BinaryCalculator with a value of binary
@@ -59,19 +68,20 @@ public class BinaryCalculator implements Calculator{
      */
     public String fromDecimal(long number) {
         // 256 128 64 32 16 4 2 u
+        BigInteger num = new BigInteger(String.valueOf(number));
         StringBuilder bin = new StringBuilder();
-        if(number<0){
+        if(num.compareTo(new BigInteger("0"))<0){
             bin.append("-");
-            number = Math.abs(number);
+            num = num.abs();
         }
         int nearPw = 0;
-        for(int y=1;Math.pow(2,y)<=number;y++){
+        for(int y = 1; num.compareTo(new BigInteger("2").pow(y))>=0; y++){
             nearPw = y;
         }
         for(int i=nearPw;i>=0;i--){
-            if(number>=Math.pow(2,i)){
+            if(num.compareTo(new BigInteger("2").pow(i))>=0){
                 bin.append("1");
-                number -= (long)Math.pow(2,i);
+                num = num.subtract(new BigInteger("2").pow(i));
             }
             else {
                 bin.append("0");
@@ -103,4 +113,53 @@ public class BinaryCalculator implements Calculator{
         }
         return number;
     }
+
+    /*
+    public String fromDecimal(BigInteger number) {
+        // 256 128 64 32 16 4 2 u
+        StringBuilder bin = new StringBuilder();
+        if(number.compareTo(new BigInteger("0"))<0){
+            bin.append("-");
+            number = number.abs();
+        }
+        int nearPw = 0;
+        for(int y = 1; number.compareTo(new BigInteger("2").pow(y))>=0; y++){
+            nearPw = y;
+        }
+        for(int i=nearPw;i>=0;i--){
+            if(number.compareTo(new BigInteger("2").pow(i))>=0){
+                bin.append("1");
+                number = number.subtract(new BigInteger("2").pow(i));
+            }
+            else {
+                bin.append("0");
+            }
+        }
+        return bin.toString();
+    }
+    */
+    /*
+    public String fromDecimal(long number) {
+        // 256 128 64 32 16 4 2 u
+        StringBuilder bin = new StringBuilder();
+        if(number<0){
+            bin.append("-");
+            number = Math.abs(number);
+        }
+        int nearPw = 0;
+        for(int y=1;Math.pow(2,y)<=number;y++){
+            nearPw = y;
+        }
+        for(int i=nearPw;i>=0;i--){
+            if(number>=Math.pow(2,i)){
+                bin.append("1");
+                number -= (long)Math.pow(2,i);
+            }
+            else {
+                bin.append("0");
+            }
+        }
+        return bin.toString();
+    }
+     */
 }

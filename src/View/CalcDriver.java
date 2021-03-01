@@ -2,9 +2,11 @@ package View;
 
 import Controller.BinaryCalculator;
 
+import Controller.HexCalculator;
 import Model.Bandwidth;
 import Model.Binary;
 import Model.Hexadecimal;
+import Test.CalculatorTestSuite;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -94,7 +96,7 @@ public class CalcDriver {
             menu.bigIntCalc();
         }
         else if(calcSelection==6){
-            testCase();
+
         }
         else {
             return;

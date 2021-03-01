@@ -18,7 +18,7 @@ public class Hexadecimal extends Number{
      * @param hexadecimalString New String of hexadecimal value
      */
     public Hexadecimal(String hexadecimalString){
-        this.value = hexadecimalString;
+        this.value = hexadecimalString.toLowerCase();
     }
 
     /**

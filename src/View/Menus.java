@@ -325,7 +325,7 @@ public class Menus {
             }
             BigDecimal num = input.nextBigDecimal();
             String unit = InputReader.fileUnitSelect();
-            System.out.println(Bandwidth.dataUnitConvert(num,unit,"") + " Terrabytes (TB)");
+            //System.out.println(Bandwidth.dataUnitConvert(num,unit,"") + " Terrabytes (TB)");
             System.out.println();
         }
         else if(functionSelection==2){
@@ -349,7 +349,7 @@ public class Menus {
             BigInteger bandSize = input.nextBigInteger();
             String bandUnit = InputReader.fileUnitSelect();
             //System.out.println(fileSize+fileUnit+" "+bandSize+bandUnit);
-            System.out.println(Bandwidth.downloadTimeCalc(fileSize,fileUnit,bandSize,bandUnit));
+            //System.out.println(Bandwidth.downloadTimeCalc(fileSize,fileUnit,bandSize,bandUnit));
         }
         else if(functionSelection==3){
             System.out.print((char)27 + "[34m");
@@ -416,7 +416,7 @@ public class Menus {
                     System.out.println(redunInst);
                 }
             }
-            Bandwidth.websiteBandwidthCalc(pageViews,rateSelection,avgPgSize,pgSizeUnit,redunF);
+            //Bandwidth.websiteBandwidthCalc(pageViews,rateSelection,avgPgSize,pgSizeUnit,redunF);
 
         }
         else if(functionSelection==4){
@@ -471,7 +471,7 @@ public class Menus {
             String monthUseType = InputReader.fileUnitSelect();
             System.out.println("Enter the converted type");
             String bandwidthType = InputReader.fileUnitSelect();
-            Bandwidth.hostingBandwidthCalcRate(num,monthUseType,bandwidthType);
+            //Bandwidth.hostingBandwidthCalcRate(num,monthUseType,bandwidthType);
         }
         else if(functionSelection==2){
             System.out.print((char)27 + "[34m");
@@ -488,7 +488,7 @@ public class Menus {
             String bandwidthType = InputReader.fileUnitSelect();
             System.out.println("Enter the converted type");
             String monthUseType = InputReader.fileUnitSelect();
-            Bandwidth.hostingBandwidthCalcTotal(num, bandwidthType, monthUseType);
+            //Bandwidth.hostingBandwidthCalcTotal(num, bandwidthType, monthUseType);
         }
         else {
             return;
