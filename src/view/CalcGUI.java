@@ -1,13 +1,13 @@
-package View;
+package view;
 
-import Controller.BandwidthCalculator;
-import Controller.BinaryCalculator;
-import Controller.DecimalCalculator;
-import Controller.HexCalculator;
-import Model.Bandwidth;
-import Model.Binary;
-import Model.Decimal;
-import Model.Hexadecimal;
+import controller.BandwidthCalculator;
+import controller.BinaryCalculator;
+import controller.DecimalCalculator;
+import controller.HexCalculator;
+import model.Bandwidth;
+import model.Binary;
+import model.Decimal;
+import model.Hexadecimal;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,16 +17,12 @@ import java.math.BigInteger;
 
 public class CalcGUI {
     private final JPanel startScreen;
-    public static JFrame frame = new JFrame("Calculator V1.0.2");
+    public static final JFrame frame = new JFrame("Calculator V1.0.3");
 
     public static void main(String[] args) {
         frame.setContentPane(new CalcGUI().startScreen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,600);
-        //JOptionPane pane = new JOptionPane();
-        //pane = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
-        //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
-        //System.out.println(yo);
         frame.setVisible(true);
     }
 
@@ -89,6 +85,7 @@ public class CalcGUI {
         }
     }
 
+    @SuppressWarnings({"InnerClassMayBeStatic", "DuplicatedCode"})
     class BinaryMenu  {
         private final JPanel binaryMenu = new JPanel();
 
@@ -145,6 +142,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class add implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -157,6 +155,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class sub implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,6 +168,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class multi implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -181,6 +181,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class div implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -194,9 +195,9 @@ public class CalcGUI {
         }
     }
 
+    @SuppressWarnings({"InnerClassMayBeStatic", "DuplicatedCode"})
     class HexadecimalMenu {
         private final JPanel hexadecimalMenu = new JPanel();
-        final String hexParam = "[0123456789abcdef]";
 
         public HexadecimalMenu(){
             JButton toDecimal = new JButton("Hexadecimal to Decimal");
@@ -251,6 +252,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class add implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -263,6 +265,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class sub implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -275,6 +278,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class multi implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -287,6 +291,7 @@ public class CalcGUI {
             }
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private class div implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -300,6 +305,7 @@ public class CalcGUI {
         }
     }
     
+    @SuppressWarnings("InnerClassMayBeStatic")
     class BandwidthMenu {
         private final JPanel bandwidthMenu = new JPanel();
         private final String unitInstr = "Enter the Unit Value (b,B,kb,KB,etc.)";
@@ -410,6 +416,7 @@ public class CalcGUI {
         }
     }
 
+    @SuppressWarnings({"InnerClassMayBeStatic", "DuplicatedCode"})
     class DecimalMenu  {
         private final JPanel decimalMenu = new JPanel();
 
@@ -480,6 +487,7 @@ public class CalcGUI {
         }
     }
 
+    @SuppressWarnings({"InnerClassMayBeStatic", "DuplicatedCode"})
     class BigIntMenu  {
         private final JPanel bigIntMenu = new JPanel();
 

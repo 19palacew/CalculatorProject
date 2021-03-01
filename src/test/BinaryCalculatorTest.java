@@ -1,7 +1,7 @@
-package Test;
+package test;
 
-import Controller.BinaryCalculator;
-import Model.Binary;
+import controller.BinaryCalculator;
+import model.Binary;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

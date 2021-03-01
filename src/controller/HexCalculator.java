@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Model.Hexadecimal;
+import model.Hexadecimal;
 
 import java.math.BigInteger;
 
@@ -69,7 +69,7 @@ public class HexCalculator implements Calculator{
     /**
      * Converts a Long to a Model.Hexadecimal Sequence up to approaching the Long Max Value
      * @param number Long number for translation
-     * @return Returns the decimal as a hexadeciaml
+     * @return Returns the decimal as a hexadecimal
      */
     public String fromDecimal(long number){
         BigInteger num = new BigInteger(String.valueOf(number));
@@ -159,7 +159,7 @@ public class HexCalculator implements Calculator{
         String hexString = hexadecimal.toString();
         String[] hexList = hexString.split("");
         int x = 0;
-        if(!hexString.toString().matches(".*[0123456789abcdef].*")){
+        if(!hexString.matches(".*[0123456789abcdef].*")){
             return 0L;
         }
         for(int i=hexList.length-1;i>=0;i--){
@@ -187,84 +187,4 @@ public class HexCalculator implements Calculator{
         }
         return Long.parseLong(num.toString());
     }
-
-    /*
-    public String fromDecimal(long number){
-        StringBuilder hex = new StringBuilder();
-        int nearPw = 0;
-        if(number<0){
-            hex.append("-");
-            number = Math.abs(number);
-        }
-        for(int y=1;Math.pow(16,y)<=number;y++){
-            nearPw = y;
-        }
-        for(int i=nearPw;i>=0;i--){
-            if(number>=Math.pow(16,i)*15){
-                hex.append("F");
-                number -= Math.pow(16,i)*15;
-            }
-            else if(number>=Math.pow(16,i)*14){
-                hex.append("E");
-                number -= Math.pow(16,i)*14;
-            }
-            else if(number>=Math.pow(16,i)*13){
-                hex.append("D");
-                number -= Math.pow(16,i)*13;
-            }
-            else if(number>=Math.pow(16,i)*12){
-                hex.append("C");
-                number -= Math.pow(16,i)*12;
-            }
-            else if(number>=Math.pow(16,i)*11){
-                hex.append("B");
-                number -= Math.pow(16,i)*11;
-            }
-            else if(number>=Math.pow(16,i)*10){
-                hex.append("A");
-                number -= Math.pow(16,i)*10;
-            }
-            else if(number>=Math.pow(16,i)*9){
-                hex.append("9");
-                number -= Math.pow(16,i)*9;
-            }
-            else if(number>=Math.pow(16,i)*8){
-                hex.append("8");
-                number -= Math.pow(16,i)*8;
-            }
-            else if(number>=Math.pow(16,i)*7){
-                hex.append("7");
-                number -= Math.pow(16,i)*7;
-            }
-            else if(number>=Math.pow(16,i)*6){
-                hex.append("6");
-                number -= Math.pow(16,i)*6;
-            }
-            else if(number>=Math.pow(16,i)*5){
-                hex.append("5");
-                number -= Math.pow(16,i)*5;
-            }
-            else if(number>=Math.pow(16,i)*4){
-                hex.append("4");
-                number -= Math.pow(16,i)*4;
-            }
-            else if(number>=Math.pow(16,i)*3){
-                hex.append("3");
-                number -= Math.pow(16,i)*3;
-            }
-            else if(number>=Math.pow(16,i)*2){
-                hex.append("2");
-                number -= Math.pow(16,i)*2;
-            }
-            else if(number>=Math.pow(16,i)*1){
-                hex.append("1");
-                number -= Math.pow(16,i)*1;
-            }
-            else {
-                hex.append("0");
-            }
-        }
-        return hex.toString();
-    }
-     */
 }

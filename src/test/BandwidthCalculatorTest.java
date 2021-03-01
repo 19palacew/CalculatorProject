@@ -1,8 +1,7 @@
-package Test;
+package test;
 
-import Controller.BandwidthCalculator;
-import Controller.BinaryCalculator;
-import Model.Bandwidth;
+import controller.BandwidthCalculator;
+import model.Bandwidth;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -11,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BandwidthCalculatorTest {
     private BandwidthCalculator bandCalc;
 
+    @SuppressWarnings("DuplicatedCode")
     @Test
     void dataUnitConvert() {
         bandCalc = new BandwidthCalculator(new Bandwidth(new BigDecimal("500"),"MB"));

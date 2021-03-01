@@ -1,16 +1,18 @@
-package Controller;
+package controller;
 
-import Model.Bandwidth;
+import model.Bandwidth;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
+@SuppressWarnings("BigDecimalMethodWithoutRoundingCalled")
 public class BandwidthCalculator {
     private final Bandwidth bandwidth;
     private static final RoundingMode mode = RoundingMode.HALF_UP;
     private static final int scale = 100;
     private static final long secInMonth = 2592000;
-    
+
+    @SuppressWarnings("unused")
     public BandwidthCalculator(){
         bandwidth = new Bandwidth();
     }
@@ -27,6 +29,7 @@ public class BandwidthCalculator {
      * Converts units of data
      * @param returnType Desired data unit
      */
+    @SuppressWarnings({"Exception Handled", "BigDecimalMethodWithoutRoundingCalled"})
     public void dataUnitConvert(String returnType){
         try{
             if(bandwidth.getType().equals(Bandwidth.Type.kb)){
@@ -56,38 +59,7 @@ public class BandwidthCalculator {
             else if(bandwidth.getType().equals(Bandwidth.Type.TB)){
                 bandwidth.setSize(bandwidth.getSize().multiply(BigDecimal.valueOf(8)).multiply(BigDecimal.valueOf(1000L).pow(4)));
             }
-            switch (returnType) {
-                case "b":
-                    bandwidth.setSize(bandwidth.getSize());
-                    break;
-                case "kb":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L)));
-                    break;
-                case "mb":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(2)));
-                    break;
-                case "gb":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(3)));
-                    break;
-                case "tb":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(4)));
-                    break;
-                case "B":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)));
-                    break;
-                case "KB":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L)));
-                    break;
-                case "MB":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(2)));
-                    break;
-                case "GB":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(3)));
-                    break;
-                case "TB":
-                    bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(4)));
-                    break;
-                    /*)
+            /*)
                 default:
                     System.out.println(num + " bits (b)");
                     System.out.println(num.divide(BigDecimal.valueOf(1000L)) + " kilobits (kb)");
@@ -100,6 +72,17 @@ public class BandwidthCalculator {
                     System.out.println(num.divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(3)) + " Gigabytes (GB)");
                     break;
                      */
+            switch (returnType) {
+                case "b" -> bandwidth.setSize(bandwidth.getSize());
+                case "kb" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L)));
+                case "mb" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(2)));
+                case "gb" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(3)));
+                case "tb" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(1000L).pow(4)));
+                case "B" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)));
+                case "KB" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L)));
+                case "MB" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(2)));
+                case "GB" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(3)));
+                case "TB" -> bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(4)));
             }
             //bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(1000L).pow(4)));
             bandwidth.setType(returnType);
@@ -135,19 +118,6 @@ public class BandwidthCalculator {
                     bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L).pow(3), scale, mode));
                 case "TB":
                     bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L).pow(4), scale, mode));
-                    /*
-                default:
-                    System.out.println(num + " bits (b)");
-                    System.out.println(num.divide(BigDecimal.valueOf(1000L), scale, mode) + " kilobits (kb)");
-                    System.out.println(num.divide(BigDecimal.valueOf(1000L).pow(2), scale, mode) + " megabits (mb)");
-                    System.out.println(num.divide(BigDecimal.valueOf(1000L).pow(3), scale, mode) + " gigabits (gb)");
-                    System.out.println(num.divide(BigDecimal.valueOf(1000L).pow(4), scale, mode) + " terabits (tb)");
-                    System.out.println(num.divide(BigDecimal.valueOf(8), scale, mode) + " Bytes (B)");
-                    System.out.println(num.divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L), scale, mode) + " Kilobytes (KB)");
-                    System.out.println(num.divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L).pow(2), scale, mode) + " Megabytes (MB)");
-                    System.out.println(num.divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L).pow(3), scale, mode) + " Gigabytes (GB)");
-                    break;
-                     */
             }
             bandwidth.setType(returnType);
             //bandwidth.setSize(bandwidth.getSize().divide(BigDecimal.valueOf(8), scale, mode).divide(BigDecimal.valueOf(1000L).pow(4), scale, mode);
@@ -271,9 +241,10 @@ public class BandwidthCalculator {
 
     /**
      * Calculates the Time needed for downloads and uploads
-     * @param availBandwidth
+     * @param availBandwidth bandwidth available
      * @return Returns a String that gives the time for a download/upload
      */
+    @SuppressWarnings({"Exception Handled", "BigDecimalMethodWithoutRoundingCalled"})
     public String downloadTimeCalc(Bandwidth availBandwidth){
         BigDecimal time;
         dataUnitConvert("b");
@@ -285,10 +256,10 @@ public class BandwidthCalculator {
         catch (ArithmeticException e){
             time = bandwidth.getSize().divide(availBandwidth.getSize(), scale, mode);
         }
-        BigInteger days = new BigInteger("0");
-        int hours = 0;
-        int minutes = 0;
-        double seconds = 0;
+        BigInteger days;
+        int hours;
+        int minutes;
+        double seconds;
         days = time.divide(BigDecimal.valueOf(86400), scale, mode).toBigInteger();
         //hours = time.remainder(BigDecimal.valueOf(86400)).divide(BigDecimal.valueOf(3600),scale, mode).intValue();
         hours = (time.intValue()%86400)/3600;
@@ -306,12 +277,11 @@ public class BandwidthCalculator {
      * @param redunF Redundancy Frequency
      * @return Returns a String
      */
+    @SuppressWarnings("Exception Handled")
     public String websiteBandwidthCalc(Double pgViews, int pgRate, double redunF){
         String str;
         Bandwidth bandwidthTotal;
         Bandwidth bandwidthRate;
-        //long secInMonth = 2628000;
-        //long secInMonth = 2592000;
         if(pgRate == 1){
             //Per Second
             pgViews *= secInMonth;
@@ -366,6 +336,7 @@ public class BandwidthCalculator {
         bandwidthTotal = bandwidth;
         bandwidthTotal.setSize(bandwidthTotal.getSize().multiply(new BigDecimal(pgViews)));
         try{
+            //noinspection BigDecimalMethodWithoutRoundingCalled
             bandwidthRate = new Bandwidth(bandwidthTotal.getSize().divide(new BigDecimal(secInMonth)),standardUnit.toString());
         }
         catch (ArithmeticException e) {
@@ -375,15 +346,11 @@ public class BandwidthCalculator {
         BandwidthCalculator rateCalc = new BandwidthCalculator(bandwidthRate);
         totalCalc.dataUnitConvert("GB");
         rateCalc.dataUnitConvert("mb");
-        //System.out.println("Actual bandwidth needed is "+ bandwidthRate.getSize()
-        //        + " Mbits/s \nor " + bandwidthTotal.getSize() +" GB per month.");
         str = "Actual bandwidth needed is "+ bandwidthRate.getSize()
                 + " Mbits/s \nor " + bandwidthTotal.getSize() +" GB per month.";
         if(redunF>1){
             bandwidthTotal.setSize(bandwidthTotal.getSize().multiply(BigDecimal.valueOf(redunF)));
             bandwidthRate.setSize(bandwidthRate.getSize().multiply(BigDecimal.valueOf(redunF)));
-            //System.out.println("With redundancy factor of 1.3, the bandwidth needed is "+ bandwidthRate.getSize()
-            //        + " Mbits/s \nor " + bandwidthTotal.getSize() + " GB per month.");
             str += "\nWith redundancy factor of 1.3, the bandwidth needed is "+ bandwidthRate.getSize()
                             + " Mbits/s \nor " + bandwidthTotal.getSize() + " GB per month.";
         }
@@ -395,6 +362,7 @@ public class BandwidthCalculator {
      * @param bandwidthType Return unit
      * @return Returns a String
      */
+    @SuppressWarnings("Exception Handled")
     public String hostingBandwidthCalcRate(String bandwidthType){
         BigDecimal monthUse = bandwidth.getSize();
         String monthUseType = bandwidth.getType().toString();
@@ -407,8 +375,6 @@ public class BandwidthCalculator {
         catch (ArithmeticException e){
             bandwidth.setSize(bandwidth.getSize().divide(new BigDecimal(secInMonth),scale,mode));
         }
-        //dataUnitConvert(monthUseType);
-        //System.out.println(monthUse + " " + monthUseType + " per month is equivalent to " + bandwidth.getSize() + " " + bandwidthType + "/s");
         return monthUse + " " + monthUseType + " per month is equivalent to " + bandwidth.getSize() + " " + bandwidthType + "/s";
     }
 

@@ -1,14 +1,14 @@
-package Test;
+package test;
 
 
-import Controller.BandwidthCalculator;
-import Controller.BinaryCalculator;
-import Controller.DecimalCalculator;
-import Controller.HexCalculator;
-import Model.Bandwidth;
-import Model.Binary;
-import Model.Decimal;
-import Model.Hexadecimal;
+import controller.BandwidthCalculator;
+import controller.BinaryCalculator;
+import controller.DecimalCalculator;
+import controller.HexCalculator;
+import model.Bandwidth;
+import model.Binary;
+import model.Decimal;
+import model.Hexadecimal;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,6 +18,7 @@ import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class CalculatorTestSuite {
     @ParameterizedTest
     @ValueSource(strings = {"0", "1", "1010", "11111111111111111111"})
@@ -114,6 +115,7 @@ public class CalculatorTestSuite {
 
     private BandwidthCalculator bandCalc;
 
+    @SuppressWarnings("DuplicatedCode")
     @Test
     void dataUnitConvert() {
         bandCalc = new BandwidthCalculator(new Bandwidth(new BigDecimal("500"),"MB"));

@@ -1,10 +1,11 @@
-package Controller;
+package controller;
 
-import Model.Decimal;
+import model.Decimal;
 
 /**
  * Modifies Decimals with various mathematical functions and conversions
  */
+@SuppressWarnings("unused")
 public class DecimalCalculator implements Calculator{
     private final Decimal decimal;
 

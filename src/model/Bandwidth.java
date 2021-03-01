@@ -1,9 +1,6 @@
-package Model;
+package model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.util.Enumeration;
 
 /**
  * Stores and Manipulates Data, specifically it's numerical size and its size category or "type"
@@ -34,16 +31,6 @@ public class Bandwidth {
         setType(type);
     }
 
-    /**
-     * Sets the size and type of the data
-     * @param size Numerical size of date
-     * @param type Size type, (Ex. bits, Bytes, Megabytes)
-     */
-    public void setSize(BigDecimal size, String type){
-        this.size = size;
-        setType(type);
-    }
-
     public Type getType() {
         return type;
     }
@@ -54,10 +41,6 @@ public class Bandwidth {
 
     public void setSize(BigDecimal size) {
         this.size = size;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public void setType(String inType){

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * Abstract Class for Types of Numbers (Binary, Decimal, Hexadecimal)

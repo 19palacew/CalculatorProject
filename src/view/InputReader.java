@@ -1,15 +1,15 @@
-package View;
+package view;
 
-import Controller.BinaryCalculator;
-import Controller.HexCalculator;
-import Model.Binary;
-import Model.Hexadecimal;
+import controller.BinaryCalculator;
+import controller.HexCalculator;
+import model.Binary;
+import model.Hexadecimal;
 
 import javax.swing.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -23,6 +23,7 @@ public class InputReader {
      * Creates a new Input Reader
      * @param input Formula String, in the format "101+10"
      */
+    @SuppressWarnings("unused")
     public InputReader(String input){
         operators = new ArrayList<>();
         values = new ArrayList<>();
@@ -33,31 +34,14 @@ public class InputReader {
                 operators.add(x.charAt(0));
             }
         }
-        for(String x: sepList){
-            values.add(x);
-        }
-    }
-
-    /**
-     * Returns the operators used in the operation
-     * @return Returns an array of Characters
-     */
-    public ArrayList<Character> getOperators(){
-        return operators;
-    }
-
-    /**
-     * Returns the number of an operation.
-     * @return Returns an array of Strings
-     */
-    public ArrayList<String> getValues(){
-        return values;
+        Collections.addAll(values, sepList);
     }
 
     /**
      * Selects the Data Unit from User Input
      * @return Returns the desired Data Unit5
      */
+    @SuppressWarnings("unused")
     public static String fileUnitSelect(){
         Scanner input = new Scanner(System.in);
         System.out.println("Select Unit Type:");
@@ -123,15 +107,14 @@ public class InputReader {
      * @param param Specific Characters that the String must be comprised of.
      * @return Returns the desired String
      */
+    @SuppressWarnings({"unused", "DuplicatedCode"})
     public static String protectString(String instr, String param){
-        Scanner input = new Scanner(System.in);
         boolean functionSelected = false;
         String functionSelection = "";
         System.out.println(instr);
         JFrame frame = new JFrame();
         while(!functionSelected) {
             frame.setVisible(true);
-            //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
             functionSelection = JOptionPane.showInputDialog(frame, instr).toLowerCase();
             String[] list = functionSelection.split("");
             for (String x: list){
@@ -154,11 +137,10 @@ public class InputReader {
         boolean functionSelected = false;
         String functionSelection = "";
         while(!functionSelected) {
-            //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
             try {
                 functionSelection = JOptionPane.showInputDialog(frame, instr).toLowerCase();
             }
-            catch (NullPointerException e){
+            catch (NullPointerException ignored){
 
             }
             String[] list = functionSelection.split("");
@@ -180,11 +162,10 @@ public class InputReader {
         boolean functionSelected = false;
         String input = "";
         while(!functionSelected) {
-            //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
             try {
                 input = JOptionPane.showInputDialog(frame, instr);
             }
-            catch (NullPointerException e){
+            catch (NullPointerException ignored){
 
             }
             try {
@@ -208,11 +189,10 @@ public class InputReader {
         boolean functionSelected = false;
         String input = "";
         while(!functionSelected) {
-            //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMER TO DISPLAY");
             try {
                 input = JOptionPane.showInputDialog(frame, instr).toLowerCase();
             }
-            catch (NullPointerException e){
+            catch (NullPointerException ignored){
 
             }
             try {
@@ -239,36 +219,7 @@ public class InputReader {
         };
     }
 
-    public static Long protectLong(JFrame frame, String instr, String param, String size){
-        boolean functionSelected = false;
-        String functionSelection = "0";
-        long maxNum = Long.MAX_VALUE;
-        if(size.equals("int")){
-            maxNum = Integer.MAX_VALUE;
-        }
-        while(!functionSelected) {
-            //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMBER TO DISPLAY");
-            try {
-                functionSelection = JOptionPane.showInputDialog(frame, instr).toLowerCase();
-            }
-            catch (NullPointerException e){
-
-            }
-            String[] list = functionSelection.split("");
-            for (String x: list){
-                if(!x.matches(param)||new BigInteger(functionSelection).compareTo(new BigInteger(String.valueOf(maxNum)))>0){
-                    JOptionPane.showMessageDialog(frame,"Bad Input or Too Large\n" + instr,"Alert",JOptionPane.WARNING_MESSAGE);
-                    functionSelected = false;
-                    break;
-                }
-                else {
-                    functionSelected = true;
-                }
-            }
-        }
-        return Long.parseLong(functionSelection);
-    }
-
+    @SuppressWarnings("DuplicatedCode")
     public static String protectUnit(JFrame frame, String instr, String type, Long size){
         boolean correctSymbols = false;
         boolean withinRange = false;
@@ -284,10 +235,9 @@ public class InputReader {
             param = "[0123456789]";
         }
             while (!correctSymbols||!withinRange) {
-                //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMBER TO DISPLAY");
                 try {
                     input = JOptionPane.showInputDialog(frame, instr).toLowerCase();
-                } catch (NullPointerException e) {
+                } catch (NullPointerException ignored) {
 
                 }
                 String[] list = input.split("");
@@ -308,9 +258,7 @@ public class InputReader {
                         withinRange = true;
                     }
                     else {
-                        if(correctSymbols){
-                            JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
-                        }
+                        JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
                         correctSymbols = false;
                     }
                 }
@@ -319,9 +267,7 @@ public class InputReader {
                         if (new HexCalculator(new Hexadecimal(input)).toDecimal() <= size) {
                             withinRange = true;
                         } else {
-                            if (correctSymbols) {
-                                JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
-                            }
+                            JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
                             correctSymbols = false;
                         }
                         System.out.println(new HexCalculator(new Hexadecimal(input)).toDecimal());
@@ -338,9 +284,7 @@ public class InputReader {
                         withinRange = true;
                     }
                     else {
-                        if(correctSymbols){
-                            JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
-                        }
+                        JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
                         correctSymbols = false;
                     }
                 }
@@ -348,16 +292,16 @@ public class InputReader {
         return input;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static double protectDouble(JFrame frame, String instr) {
         boolean correctSymbols = false;
-        boolean withinRange = false;
         String input = "1";
         String param = "[.0123456789]";
-        while (!correctSymbols || !withinRange) {
+        while (!correctSymbols) {
             //String yo = JOptionPane.showInputDialog(null, "INPUT A NUMBER TO DISPLAY");
             try {
                 input = JOptionPane.showInputDialog(frame, instr).toLowerCase();
-            } catch (NullPointerException e) {
+            } catch (NullPointerException ignored) {
 
             }
             String[] list = input.split("");
@@ -372,9 +316,7 @@ public class InputReader {
                     correctSymbols = true;
                 }
             }
-            if (new BigDecimal(input).compareTo(new BigDecimal(String.valueOf(Double.MAX_VALUE))) <= 0) {
-                withinRange = true;
-            } else {
+            if (!(new BigDecimal(input).compareTo(new BigDecimal(String.valueOf(Double.MAX_VALUE))) <= 0)) {
                 if (correctSymbols) {
                     JOptionPane.showMessageDialog(frame, "Too Large\n" + instr, "Alert", JOptionPane.WARNING_MESSAGE);
                 }
@@ -385,43 +327,17 @@ public class InputReader {
     }
 
     /**
-     * Gets a specific char from a user
-     * @param instr Instructions for the user
-     * @param param Specific character to be found
-     * @return Returns desired character
-     */
-    public static char protectChar(String instr, String param){
-        Scanner input = new Scanner(System.in);
-        boolean functionSelected = false;
-        char functionSelection = ' ';
-        System.out.println(instr);
-        while(!functionSelected) {
-            functionSelection = input.next().charAt(0);
-            if((functionSelection+"").matches(param)){
-                functionSelected = true;
-            }
-            else {
-                System.out.print((char)27 + "[31m");
-                System.out.println("Bad Input");
-                System.out.print((char)27 + "[34m");
-                System.out.println(instr);
-            }
-        }
-        return functionSelection;
-    }
-
-    /**
      * Creates a String for Input Reader
      * @return Returns a String for Input Reader
      */
     public String toString(){
-        String temp = "";
+        StringBuilder temp = new StringBuilder();
         for(String x: values){
-            temp += x + "";
+            temp.append(x);
         }
         for(char y: operators){
-            temp += y + "";
+            temp.append(y);
         }
-        return temp;
+        return temp.toString();
     }
 }

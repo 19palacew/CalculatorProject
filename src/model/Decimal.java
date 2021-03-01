@@ -1,24 +1,10 @@
-package Model;
+package model;
 
 /**
  * Stores and Manipulates Decimal Value
  */
+@SuppressWarnings("unused")
 public class Decimal extends Number{
-
-    /**
-     * Creates a new Decimal of size 0
-     */
-    public Decimal(){
-        value = "0";
-    }
-
-    /**
-     * Creates a new Decimal with a String of decimal String
-     * @param decimalString New String of decimalString value
-     */
-    public Decimal(String decimalString){
-        this.value = decimalString;
-    }
 
     /**
      * Creates a new Decimal of value num
@@ -50,15 +36,8 @@ public class Decimal extends Number{
      * Sets the current value of Decimal to a long num
      * @param num New long to be used
      */
+    @SuppressWarnings("unused")
     public void setValue(long num){
-        this.value = num + "";
-    }
-
-    /**
-     * Sets the current value of Decimal to a double num
-     * @param num New double to be used
-     */
-    public void setValue(double num){
         this.value = num + "";
     }
 

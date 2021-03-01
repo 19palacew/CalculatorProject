@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <pattern value="Controller.Calculator" method="add" />
+    <pattern value="Controller.Calculator" />
+    <pattern value="Controller.Calculator" method="div" />
+    <pattern value="Controller.Calculator" method="fromDecimal" />
+    <pattern value="Controller.Calculator" method="multi" />
+    <pattern value="Controller.Calculator" method="sub" />
+    <pattern value="Controller.Calculator" method="toDecimal" />
+    <pattern value="model.Number" method="setValue" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="true" project-jdk-name="14" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

@@ -1,10 +1,7 @@
-package Test;
+package test;
 
-import Controller.BinaryCalculator;
-import Controller.HexCalculator;
-import Model.Binary;
-import Model.Hexadecimal;
-import org.junit.jupiter.api.Test;
+import controller.HexCalculator;
+import model.Hexadecimal;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
